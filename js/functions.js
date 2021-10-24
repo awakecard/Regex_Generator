@@ -15,17 +15,23 @@ $("documet").ready(function(){
     var flags = "i";
     var working_history = [];
 
-    $("#working_box").toggle();
+    $("#working_box_area").toggle();
     $("#results").hide();
     $("#selected_suggestion").hide();
     $("#history_section").hide();
     
     //debug_setup - adds test data
-    //debug_setup()
+    debug_setup()
 
-
+    //This is all dealing with changes to the sample_box, which should be allowed to change via, change events, enter key, or click or the escape button.
     $("#sample_box").change(function(){
         run_escape();
+    });
+    //https://www.techiedelight.com/trigger-button-click-on-enter-key-javascript/#:~:text=1.%20Using%20jQuery.%20The%20idea%20is%20to%20bind,submit%20button%20when%20the%20Enter%20key%20is%20detected.
+    $("#sample_box").keyup(function(event){
+        if(event.which == 13){
+            run_escape();
+        }
     });
     $("#escape").click(function(){
         run_escape();
@@ -39,7 +45,7 @@ $("documet").ready(function(){
         $("#escape").toggle();
 
         //unhide working string
-        $("#working_box").toggle();
+        $("##working_box_area").toggle();
         //escape the workging string.
         //used a real escape function ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
         working_string = original_string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -53,13 +59,24 @@ $("documet").ready(function(){
 
     //this is to determin when to update everything based from a user change
     $("#working_box").change(function(){
+        change_working_box();
+    });//end of working box change
+    //https://www.techiedelight.com/trigger-button-click-on-enter-key-javascript/#:~:text=1.%20Using%20jQuery.%20The%20idea%20is%20to%20bind,submit%20button%20when%20the%20Enter%20key%20is%20detected.
+    $("#working_box").keyup(function(event){
+        if(event.which == 13){
+            change_working_box();
+        }
+    });
+    $("#go").click(function(){
+        change_working_box();
+    });
+
+    function change_working_box(){
         update_history();
         run_regex_loop();
         update_boxes();
-        debug("#working_box on change")
-
-    });//end of working box change
-
+        debug("#working_box on change");
+    };
 
     //to allow for regex suggestions
     //https://stackoverflow.com/questions/36215191/detect-if-text-is-highlighted-on-mouse-up-jquery

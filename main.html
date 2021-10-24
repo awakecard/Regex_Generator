@@ -18,18 +18,20 @@
             </div>
 
 
-            <div class="mt-4 p-5">
+            <div class="mt-4">
                 <h2>Text to create a regex for:</h2>
                 
                 
                 <div class="input-group mb-3">
                     <input type="text" id="sample_box" class="form-control" placeholder="original string" aria-describedby="escape"/>
                     <button id="escape" class="btn btn-outline-secondary btn-info text-white"  type="button">Escape</button>
-                  </div>
+                </div>
                 
+                <div class="input-group mb-3" id="working_box_area">
+                    <input id="working_box" class="form-control" placeholder="working string"/>
+                    <button id="go"  class="btn btn-outline-secondary btn-info text-white"  type="button">Go</button>
+                </div>
                 
-                
-                <input id="working_box" class="col-12" placeholder="working string"/>
                 <div class="row">
                     <p id="history" class="col-2 offset-10 text-info">Revert from History</p>
                     <div class="row" id="history_section">
