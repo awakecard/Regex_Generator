@@ -23,7 +23,15 @@ $("documet").ready(function(){
     //debug_setup - adds test data
     //debug_setup()
 
+
+    $("#sample_box").change(function(){
+        run_escape();
+    });
     $("#escape").click(function(){
+        run_escape();
+    }); //end of the escape button being clicked
+
+    function run_escape(){
         //Get the original String
         original_string = $("#sample_box").val();
         //hide original string
@@ -40,7 +48,7 @@ $("documet").ready(function(){
         $("#working_box").val(working_string);
         update_history();
         debug("#escape on click"); //for sanity sake
-    }); //end of the escape button being clicked
+    }
 
 
     //this is to determin when to update everything based from a user change
