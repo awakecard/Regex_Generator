@@ -25,9 +25,29 @@
 
             <div class="mt-4 p-5">
                 <h2>Text to create a regex for:</h2>
-                <input id="sample_box" class="col-sm-9" placeholder="original string"/>
-                <input id="escape" class="offset-sm-1 col-sm-1 btn btn-info text-white" value="Escape"  type="button" />
+                
+                
+                <div class="input-group mb-3">
+                    <input type="text" id="sample_box" class="form-control" placeholder="original string" aria-describedby="escape"/>
+                    <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"> -->
+                    <button id="escape" class="btn btn-outline-secondary btn-info text-white"  type="button">Escape</button>
+                    <!--<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button> -->
+                  </div>
+                
+                
+                
                 <input id="working_box" class="col-12" placeholder="working string"/>
+                <div class="row">
+                    <p id="history" class="col-2 offset-10 text-info">Revert from History</p>
+                    <div class="row" id="history_section">
+                        <div class="row">
+                            <button class="offset-11 col-1 btn btn-danger" id="hide_history">&times;</button>
+                            <hr />
+                        </div>
+                        <div class="row" id="history_content">
+                        </div>
+                    </div>
+                </div>
                 <div class="row">                
                     <p id="selection"></p>
                     <p id="recommendations"></p>

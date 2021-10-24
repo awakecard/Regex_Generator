@@ -18,6 +18,7 @@ $("documet").ready(function(){
     $("#working_box").toggle();
     $("#results").hide();
     $("#selected_suggestion").hide();
+    $("#history_section").hide();
     
     //debug_setup - adds test data
     debug_setup()
@@ -32,35 +33,19 @@ $("documet").ready(function(){
         //unhide working string
         $("#working_box").toggle();
         //escape the workging string.
-        var to_escape =[
-            "/","\\","{","}","[","]","(",")","$","\""
-        ];
-        //outer loop = string loop; inner loop = escape loop
-        for(letter_index=0; letter_index < original_string.length; letter_index++){
-            var escape_char = false;
-            
-            for(escape_index=0; escape_index < to_escape.length; escape_index++){
-                if(original_string.charAt(letter_index) == to_escape[escape_index]){
-                    escape_char = true;
-                }
-            }//end of inner loop
-        
-            if(escape_char){
-                working_string += "\\" + original_string.charAt(letter_index)
-            }else{
-                working_string += original_string.charAt(letter_index)
-            }
-        }//end of outer loop
+        //used a real escape function ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+        working_string = original_string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
         needs_escaping = false
         has_original_string = true
         $("#working_box").val(working_string);
-          
+        update_history();
         debug("#escape on click"); //for sanity sake
     }); //end of the escape button being clicked
 
 
     //this is to determin when to update everything based from a user change
     $("#working_box").change(function(){
+        update_history();
         run_regex_loop();
         update_boxes();
         debug("#working_box on change")
@@ -127,6 +112,7 @@ $("documet").ready(function(){
                     $("#confirm_change").click(function(){
                         working_string = new_working;
                         $("#working_box").val(working_string);
+                        update_history();
                         run_regex_loop();
                         update_boxes();
                     });
@@ -210,15 +196,46 @@ $("documet").ready(function(){
 
 
     $("#history").click(function(){
-        
+        $("#history_section").show();
+
+        var htext = "<ul class=\"list-unstyled\">"
+        working_history.forEach(wh => {
+            htext += "<li class=\"history-revert text-info\" data=\""+wh+"\">" + wh + "</li>"
+        });
+        htext += "</ul>"
+
+        $("#history_content").html(htext);
+        $(".history-revert").click(function(){
+            var h = $(this).attr("data")
+            $("#working_box").val(h);
+            $("#history_section").hide();
+            run_regex_loop();
+            update_boxes();
+        });
     });
 
-    function revert_to_history(history){
-        $("#working_box").val(history);
-        $("hitory_section").hide();
-        run_regex_loop();
-        update_boxes();
+
+    // this will update the working history upto 20 places, so you can revert mistakes in reverse chronlogical order
+    function update_history(){
+        var new_item = $("#working_box").val()
+        var h = []
+        h.push(new_item);
+        var run = -1
+        if(working_history.length < 19){
+            run = working_history.length
+        }else{
+            run = 19;
+        }
+        for(var index = 0; index < run; index++){
+            h.push(working_history[index]);
+        }
+        working_history = h;
     }
+
+    
+    $("#hide_history").click(function(){
+        $("#history_section").hide();
+    });
 
     //DEBUG FUNCTIONS
     //debug, think of this as a toString function where the currnet state is spat out
