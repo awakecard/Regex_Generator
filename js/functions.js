@@ -21,7 +21,7 @@ $("documet").ready(function(){
     $("#history_section").hide();
     
     //debug_setup - adds test data
-    debug_setup()
+    //debug_setup()
 
     $("#escape").click(function(){
         //Get the original String
