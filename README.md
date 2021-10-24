@@ -4,7 +4,13 @@ This project is infulenced by my professuional work, where I am always writing r
 
 The goal of the project is to have a clone of Regex101 with some prebuilt regular expressions, so that you can build a regualar expression from the diffrent templates making building and debugging regular expressions easy.
 
-# Road Map
+## Issues
+- original input does not feel fluid, should allow for enter / onchange event to trigger the basic
+- no match highlighting to show what is matching.
+- more patterns required
+- grok needs to be added.
+
+## Road Map
 
 1. Regex101 simple clone
     - allow input box which can be maipluated
