@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Regex Generator</title>
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/custom.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="mt-4 p-5 bg-primary text-white rounded">
+                <h1>Regex Generator</h1>
+                <p>
+                    This tool is designed to aid with the genration and testing of regualar expressions,
+                    the current build version is 0.0.1 Alpha. This tool will allow you to add a test string in the top of the content
+                    along with some control data once you click escape, the tool will automatically escape strings, so that they are ready
+                    for use with regular expressions.
+                    Following which you can still append or add test data to the "test data" before makeing modications to the regex, once any
+                    changes have been detected, the resuls section will come into view, where you can make as many changes untill you are happy with the results.
+                </p>
+            </div>
+
+
+            <div class="mt-4 p-5">
+                <h2>Text to create a regex for:</h2>
+                <input id="sample_box" class="col-sm-9" placeholder="original string"/>
+                <input id="escape" class="offset-sm-1 col-sm-1 btn btn-info text-white" value="Escape"  type="button" />
+                <input id="working_box" class="col-12" placeholder="working string"/>
+                <div class="row">                
+                    <p id="selection"></p>
+                    <p id="recommendations"></p>
+                    <div id="selected_suggestion">
+                        Selected Suggestion: <br>
+                        replace: <span id="old_working"></span> <br />
+                        with: <span id="new_working"></span>
+                        <div class="row">
+                            <button class="btn btn-primary offset-sm-5 col-2" id="confirm_change">Confirm</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="init_test_data" class="row">
+                <h3>Test Data</h3>
+                <textarea id="all_test_strings" class="col" rows=15></textarea>
+            </div>
+
+            <div id="results" class="row">
+                <div class="col  bg-success text-white">
+                    <h4>Matched Strings</h4>
+                    <p id="match_summary"></p>
+                    <textarea id="matched_strings" class="col-12 bg-success-light" rows=15></textarea>
+                </div>
+                <div class="col bg-danger text-white">
+                    <h4>Non Matched Strings</h4>
+                    <p id="non_match_summary"></p>
+                    <textarea id="non_matched_strings" class="col-12 bg-danger-light" rows=15></textarea>
+            
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./general.js"></script>
+    <script src="./js/functions.js"></script>
+</html>

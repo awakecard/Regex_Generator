@@ -1,0 +1,9 @@
+.bg-danger-light {
+    background-color: rgba(220, 53, 69, .5);
+    color: white;
+}
+
+.bg-success-light {
+    background-color: rgba(40, 167, 69, 0.5);
+    color: white;
+}
